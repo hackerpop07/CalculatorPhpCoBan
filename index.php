@@ -36,29 +36,44 @@ $tinh = new cal($first, $calculator, $second);
 </head>
 <body>
 <form method="post">
-    <h1>Simple Calculator</h1>
-    <div style="border-bottom-width: 12px">
-        First operand: <input type="number" name="firstNumber">
-        <br>
-        Operand:
-        <select name="Operand">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-        </select>
-        <br>
-        SecondOperand:
-        <input type="number" name="SecondOperand">
-        <br>
-        <input type="submit" value="Calculator">
+    <div class="profile">
+        <fieldset class="fieldset">
+            <legend><h1>Simple Calculator</h1></legend>
+            <div style="border-bottom-width: 12px">
+                <input type="text" name="firstNumber" placeholder="First operand">
+                <br>
+                <select name="Operand">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <br>
+                <input type="text" name="SecondOperand" placeholder="SecondOperand">
+                <br>
+                <input type="submit" value="Calculator">
+            </div>
+            <h2>Result: </h2>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                if ($tinh->second != 0 && $tinh->calcu != '/') {
+                    echo $tinh->calculator();
+                } else {
+                    echo "edit SecondOperand#0 vs division ";
+                }
+            } ?>
+        </fieldset>
     </div>
-    <h2>Result: </h2>
-    <?php if ($tinh->second != 0 && $tinh->calcu != '/') {
-        echo $tinh->calculator();
-    } else {
-        echo "edit SecondOperand#0 vs division ";
-    } ?>
 </form>
+<style>
+    .fieldset {
+        background: #d8ffcc;
+        width: 500px;
+    }
+
+    .profile {
+        text-align: left;
+    }
+</style>
 </body>
 </html>
